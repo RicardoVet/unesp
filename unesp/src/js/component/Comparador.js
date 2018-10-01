@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Formulario from './Formulario';
 import '../../css/component/Comparador_style.css';
 import { Disciplinas } from '../rest/FormularioRest';
+import { Form } from '../rest/FormularioRest';
 
 class Comparador extends Component {
 
@@ -9,12 +10,16 @@ class Comparador extends Component {
         super(props);
 
         this.state = {
-            disciplinas: []
+            disciplinas: [],
+            formulario: {},
+            codigo: ''
         }
 
         this.action_curso = this.action_curso.bind(this);
         this.action_departamento = this.action_departamento.bind(this);
         this.change = this.change.bind(this);
+        this.buscarFormario = this.buscarFormario.bind(this);
+        this.buscarCodigo = this.buscarCodigo.bind(this);
     }
 
     componentDidMount() {
@@ -45,6 +50,14 @@ class Comparador extends Component {
         this.editForm.setState({ anual: this.form.state.anual });
     }
 
+    buscarCodigo(event){
+        this.setState({codigo:event.target.value});
+    }
+
+    buscarFormario(event) {
+        Form(event.target.value).then(data => this.setState({formulario: data}));
+    }
+
     change(event) {
         alert(event.target.value);
     }
@@ -55,6 +68,7 @@ class Comparador extends Component {
 
     render() {
         let disciplinas = this.state.disciplinas;
+        let formulario = this.state.formulario;
         return (
             <div className="row">
                 <div style={{ paddingBottom: '120px' }}>
@@ -64,7 +78,7 @@ class Comparador extends Component {
                                 <label htmlFor="sel1">Disciplina:</label>
                                 <select className="form-control" id="sel1" onChange={this.change}>
                                     {disciplinas.map((disciplina, index) => (
-                                        <option>{disciplina}</option>
+                                        <option key={index}>{disciplina}</option>
                                     ))}
                                 </select>
                             </div>
@@ -74,13 +88,9 @@ class Comparador extends Component {
                     <div className="container col-md-4">
                         <form>
                             <div className="form-group" style={{ width: '300px' }}>
-                                <label htmlFor="sel1">Versão:</label>
-                                <select className="form-control" id="sel1" onChange={this.change}>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                </select>
+                                <label htmlFor="sel1">Codigo:</label>
+                                <input value={this.state.codigo} onChange={this.buscarCodigo}  
+                                onBlur={this.buscarFormario}  className="form-control" id="sel1" />
                             </div>
                         </form>
                     </div>

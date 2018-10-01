@@ -19,9 +19,15 @@ const Disciplinas = () => {
     const URL = 'http://localhost:8080/React/cadastro/disciplinas';
     return axios.get(URL).then(response => response.data);
 }
+
+const Form = (codigo) => {
+    const URL = 'http://localhost:8080/React/cadastro/form/'+codigo;
+    return axios.get(URL).then(response => response.data);
+}
 export {
     listAll,
     listAllPage,
     saveAll,
-    Disciplinas
+    Disciplinas,
+    Form
 }

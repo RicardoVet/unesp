@@ -20,9 +20,9 @@ class Formulario extends Component {
             creditos: this.props.creditos,
             carga: this.props.carga,
             numeroDeAlunos: this.props.numero_de_alunos,
-            aulas_teoricas: this.props.aulas_teoricas,
-            aulas_praticas: this.props.aulas_praticas,
-            aulas_teorico_praticas: this.props.aulas_teorico_praticas,
+            aulasTeoricas: this.props.aulas_teoricas,
+            aulasPraticas: this.props.aulas_praticas,
+            aulasTeoricoPraticas: this.props.aulas_teorico_praticas,
             outras: this.props.outras,
             objetivos: this.props.objetivos,
             conteudo: this.props.conteudo
@@ -41,6 +41,12 @@ class Formulario extends Component {
         this.change_creditos = this.change_creditos.bind(this);
         this.change_carga = this.change_carga.bind(this);
         this.change_numero_de_alunos = this.change_numero_de_alunos.bind(this);
+        this.change_aulas_teoricas =this.change_aulas_teoricas.bind(this);
+        this.change_aulas_praticas = this.change_aulas_praticas.bind(this);
+        this.change_aulas_teorico_praticas = this.change_aulas_teorico_praticas.bind(this);
+        this.change_outras = this.change_outras.bind(this);
+        this.change_objetivos = this.change_objetivos.bind(this);
+        this.change_conteudo = this.change_conteudo.bind(this);
         this.save_action = this.save_action.bind(this);
     }
 
@@ -105,15 +111,40 @@ class Formulario extends Component {
     }
 
     change_requisitos(event) {
-        this.setState({ requisitos: this.state.requisitos });
+        this.setState({ requisitos: event.target.value });
     }
 
     change_creditos(event) {
-        this.setState({ creditos: this.state.creditos });
+        this.setState({ creditos: event.target.value });
     }
 
     change_carga(event) {
-        this.setState({ carga: this.state.carga });
+        this.setState({ carga: event.target.value });
+    }
+
+    change_aulas_teoricas(event) {
+        alert(event.target.value);
+        this.setState({aulasTeoricas: event.target.value});
+    }
+
+    change_aulas_praticas(event){
+        this.setState({aulasPraticas: event.target.value});
+    }
+
+    change_aulas_teorico_praticas(event){
+        this.setState({aulasTeoricoPraticas: event.target.value});
+    }
+
+    change_outras(event){
+        this.setState({outras: event.target.value});
+    }
+    
+    change_objetivos(event) {
+        this.setState({objetivos: event.target.value});
+    }
+    
+    change_conteudo(event){
+        this.setState({conteudo: event.target.value});
     }
 
     save_action(event) {
@@ -169,42 +200,62 @@ class Formulario extends Component {
                 </div>
                 <div className="form-group">
                     <label htmlFor="req">Pré e Co-Requisito:</label>
-                    <input type="text" className="form-control" id="req" />
+                    <input type="text" className="form-control" id="req" value={this.state.requisitos} onChange={this.change_requisitos} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="cre">Créditos:</label>
-                    <input type="number" className="form-control" id="cre" />
+                    <input type="number" className="form-control" id="cre" value={this.state.creditos} onChange={this.change_creditos} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="car">Carga Horária Total:</label>
-                    <input type="number" className="form-control" id="car" />
+                    <input type="number" className="form-control" id="car" min={this.props.carga} max={this.props.carga + 50} defaultValue={this.state.carga} onChange={this.change_carga} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="num">Número Máximo de Alunos:</label>
-                    <input type="number" min={this.props.numero_de_alunos} max={this.props.numero_de_alunos + 50} defaultValue={this.state.numero_de_alunos} onChange={this.change_numero_de_alunos} className="form-control" id="num" />
+                    <input type="number" 
+                        min={this.props.numero_de_alunos} 
+                        max={this.props.numero_de_alunos + 50} 
+                        defaultValue={this.state.numeroDeAlunos} 
+                        onChange={this.change_numero_de_alunos} className="form-control" id="num" />
                 </div>
                 <div className="form-group">
                     <label htmlFor="teo">Aulas Teóricas:</label>
-                    <input type="number" className="form-control" id="teo" />
+                    <input type="number" className="form-control" id="teo" 
+                        min={this.props.aulas_teoricas} 
+                        max={this.props.aulas_teoricas + 50} 
+                        defaultValue={this.state.aulasTeoricas} 
+                        onChange={this.change_aulas_teoricas} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="pra">Aulas Práticas:</label>
-                    <input type="number" className="form-control" id="pra" />
+                    <input type="number" className="form-control" id="pra" 
+                        min={this.props.aulas_praticas} 
+                        max={this.props.aulas_praticas + 50} 
+                        defaultValue={this.state.aulasPraticas} 
+                        onChange={this.change_aulas_praticas} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="aul">Aulas Teorico-Praticas:</label>
-                    <input type="number" className="form-control" id="aul" />
+                    <input type="number" className="form-control" id="aul" 
+                        min={this.props.aulas_teorico_praticas} 
+                        max={this.props.aulas_teorico_praticas + 50} 
+                        defaultValue={this.state.aulasTeoricoPraticas} 
+                        onChange={this.change_aulas_teorico_praticas}/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="out">Outras:</label>
-                    <input type="text" className="form-control" id="out" />
+                    <input type="text" className="form-control" id="out" 
+                        value={this.state.outras} 
+                        onChange={this.change_outras} />
                 </div>
                 <div className="col-md-12" style={{ padding: '0px' }}>
                     <div className="form-group col-md-9" style={{ padding: '0px' }}>
                         <label htmlFor="obj">Objetivos:</label>
                         <textarea className="form-control"
                             placeholder="Ao Termino da disciplina o aluno devera ser capaz de"
-                            rows="5" id="obj"></textarea>
+                            rows="5" id="obj"
+                            value={this.state.objetivos}
+                            onChange={this.change_objetivos}></textarea>
                     </div>
                     <div className="col-md-3" style={{ marginTop: '25px' }}>
                         <button type="button" className="btn btn-success btn-sm"
