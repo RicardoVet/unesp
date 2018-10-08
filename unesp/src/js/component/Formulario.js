@@ -48,6 +48,11 @@ class Formulario extends Component {
         this.change_objetivos = this.change_objetivos.bind(this);
         this.change_conteudo = this.change_conteudo.bind(this);
         this.save_action = this.save_action.bind(this);
+        this.change_teste = this.change_teste.bind(this);
+    }
+
+    change_teste(event){
+        alert("aqui")
     }
 
     change_curso(event) {
@@ -152,6 +157,7 @@ class Formulario extends Component {
 
     }
     render() {
+        console.log(this.props.formulario)
         return (
             <form>
                 <div className="form-group">
@@ -179,10 +185,10 @@ class Formulario extends Component {
                         <label htmlFor="ser">Anual/Sem:</label>
                         <div className="form-check mt-10">
                             <label className="form-check-label">
-                                <input type="radio" value={this.state.anual} onChange={this.change_anual} className="form-check-input" name="optradio" />Anual
+                                <input type="radio" checked={this.state.anual} value={this.state.anual} onChange={this.change_anual} className="form-check-input" name="optradio" />Anual
                         </label>
                             <label className="form-check-label ml-10">
-                                <input type="radio" value={this.state.semestral} onChange={this.change_semestral} className="form-check-input" name="optradio" />Semestral
+                                <input type="radio" checked={this.state.semestral} value={this.state.semestral} onChange={this.change_semestral} className="form-check-input" name="optradio" />Semestral
                         </label>
                         </div>
                     </div>
@@ -190,10 +196,10 @@ class Formulario extends Component {
                         <label htmlFor="Obr">Obrigatória/Optativa:</label>
                         <div className="form-check mt-10">
                             <label className="form-check-label">
-                                <input type="radio" value={this.state.obrigatoria} onChange={this.change_obrigatoria} className="form-check-input" name="opt" />Obrigatória
+                                <input type="radio" checked={this.state.obrigatoria} value={this.state.obrigatoria} onChange={this.change_obrigatoria} className="form-check-input" name="opt" />Obrigatória
                         </label>
                             <label className="form-check-label ml-10">
-                                <input type="radio" value={this.state.optativa} onChange={this.change_optativa} className="form-check-input" name="opt" />Optativa
+                                <input type="radio" checked={this.state.optativa} value={this.state.optativa} onChange={this.change_optativa} className="form-check-input" name="opt" />Optativa
                         </label>
                         </div>
                     </div>

@@ -12,6 +12,8 @@ class Comparador extends Component {
         this.state = {
             disciplinas: [],
             formulario: {},
+            myForm:<Formulario />,
+            thisForm:<Formulario />,
             codigo: ''
         }
 
@@ -55,7 +57,17 @@ class Comparador extends Component {
     }
 
     buscarFormario(event) {
-        Form(event.target.value).then(data => this.setState({formulario: data}));
+        Form(this.state.codigo).then(data => this.setState({formulario: data}));
+        let formulario = this.state.formulario;
+        this.setState({myForm:<Formulario formulario={formulario} />});
+        // this.form.setState({codigo: this.state.formulario.codigo});
+        // this.form.setState({curso:this.state.formulario.curso});
+        // this.form.setState({disciplina:this.state.formulario.disciplina})
+        // this.form.setState({anual:this.state.formulario.anual});
+        // this.form.setState({semestral: this.state.formulario.semestral });
+        // this.form.setState({optativa: this.state.formulario.optativa});
+        // this.form.setState({obrigatoria: this.state.formulario.obrigatoria});
+        // this.form.setState({creditos:this.state.formulario.creditos});
     }
 
     change(event) {
@@ -90,7 +102,7 @@ class Comparador extends Component {
                             <div className="form-group" style={{ width: '300px' }}>
                                 <label htmlFor="sel1">Codigo:</label>
                                 <input value={this.state.codigo} onChange={this.buscarCodigo}  
-                                onBlur={this.buscarFormario}  className="form-control" id="sel1" />
+                                 onBlur={this.buscarFormario} className="form-control" id="sel1" />
                             </div>
                         </form>
                     </div>
@@ -109,7 +121,7 @@ class Comparador extends Component {
                 </div>
 
                 <div className="col-md-5" style={{ borderRightStyle: 'solid' }}>
-                    <Formulario ref={(props) => this.editForm = props} />
+                    {this.state.thisForm}
                 </div>
 
                 <div className="col-md-2 text-center" style={{ borderTopStyle: 'solid' }}>
@@ -179,7 +191,7 @@ class Comparador extends Component {
                 </div>
 
                 <div className="col-md-5" style={{ borderLeftStyle: 'solid' }}>
-                    <Formulario ref={(props) => this.form = props} />
+                    {this.state.myForm}
                 </div>
             </div>
         );
