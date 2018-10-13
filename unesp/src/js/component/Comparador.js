@@ -17,6 +17,10 @@ class Comparador extends Component {
 
         this.action_curso = this.action_curso.bind(this);
         this.action_departamento = this.action_departamento.bind(this);
+        this.action_codigo = this.action_codigo.bind(this);
+        this.action_disciplina = this.action_disciplina.bind(this);
+        this.action_seriacao = this.action_seriacao.bind(this);
+        this.action_anual_semestral = this.action_anual_semestral.bind(this);
         this.change = this.change.bind(this);
         this.buscarCodigo = this.buscarCodigo.bind(this);
     }
@@ -45,8 +49,9 @@ class Comparador extends Component {
         this.editForm.setState({ seriacao: this.form.state.seriacao });
     }
 
-    action_anual(event) {
+    action_anual_semestral(event) {
         this.editForm.setState({ anual: this.form.state.anual });
+        this.editForm.setState({ semestral: this.form.state.semestral });
     }
 
     buscarCodigo(event){
@@ -106,7 +111,7 @@ class Comparador extends Component {
                 </div>
 
                 <div className="col-md-5" style={{ borderRightStyle: 'solid' }}>
-                    <Formulario />
+                    <Formulario ref={(component) => { this.editForm = component; }}/>
                 </div>
 
                 <div className="col-md-2 text-center" style={{ borderTopStyle: 'solid' }}>
@@ -118,19 +123,19 @@ class Comparador extends Component {
                         <span className="glyphicon glyphicon-arrow-left"></span>
                     </button>
                     <br />
-                    <button onClick={this.action} className="btn btn-primary btn-md margin-top-40px">
+                    <button onClick={this.action_codigo} className="btn btn-primary btn-md margin-top-40px">
                         <span className="glyphicon glyphicon-arrow-left"></span>
                     </button>
                     <br />
-                    <button onClick={this.action} className="btn btn-primary btn-md margin-top-40px">
+                    <button onClick={this.action_disciplina} className="btn btn-primary btn-md margin-top-40px">
                         <span className="glyphicon glyphicon-arrow-left"></span>
                     </button>
                     <br />
-                    <button onClick={this.action} className="btn btn-primary btn-md margin-top-40px">
+                    <button onClick={this.action_seriacao} className="btn btn-primary btn-md margin-top-40px">
                         <span className="glyphicon glyphicon-arrow-left"></span>
                     </button>
                     <br />
-                    <button onClick={this.action} className="btn btn-primary btn-md margin-top-40px">
+                    <button onClick={this.action_anual_semestral} className="btn btn-primary btn-md margin-top-40px">
                         <span className="glyphicon glyphicon-arrow-left"></span>
                     </button>
                     <br />
@@ -176,7 +181,7 @@ class Comparador extends Component {
                 </div>
 
                 <div className="col-md-5" style={{ borderLeftStyle: 'solid' }}>
-                    <Formulario formulario={formulario}/>
+                    <Formulario formulario={formulario} ref={(component) => { this.form = component; }}/>
                 </div>
             </div>
         );

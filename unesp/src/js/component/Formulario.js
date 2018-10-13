@@ -181,20 +181,26 @@ class Formulario extends Component {
     //     return false;
     // }
 
+
+    componentDidUpdate(){
+        if(this.props.formulario!==undefined && this.props.formulario!=='' && this.props.formulario.codigo!==this.state.codigo){
+            this.set_formulario();
+       }
+    }
+
     set_formulario(event){
-        this.setState({id:this.props.formulario.id})
         this.setState({curso:this.props.formulario.curso})
         this.setState({departamento:this.props.formulario.departamento})
         this.setState({disciplina:this.props.formulario.disciplina})
         this.setState({anual:this.props.formulario.anual})
         this.setState({semestral:this.props.formulario.semestral})
         this.setState({codigo:this.props.formulario.codigo})
+        this.setState({obrigatoria:this.props.formulario.obrigatoria})
+        this.setState({optativa:this.props.formulario.optativa})
+        this.setState({seriacao:this.props.formulario.seriacao})
     }
 
     render() {
-        if(this.props.formulario!==undefined && this.props.formulario!=='' && this.props.formulario.codigo!==this.state.codigo){
-             this.set_formulario();
-        }
         return (
             <form>
                 <div className="form-group">
