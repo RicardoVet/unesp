@@ -12,15 +12,12 @@ class Comparador extends Component {
         this.state = {
             disciplinas: [],
             formulario: {},
-            myForm:<Formulario />,
-            thisForm:<Formulario />,
             codigo: ''
         }
 
         this.action_curso = this.action_curso.bind(this);
         this.action_departamento = this.action_departamento.bind(this);
         this.change = this.change.bind(this);
-        this.buscarFormario = this.buscarFormario.bind(this);
         this.buscarCodigo = this.buscarCodigo.bind(this);
     }
 
@@ -54,20 +51,9 @@ class Comparador extends Component {
 
     buscarCodigo(event){
         this.setState({codigo:event.target.value});
-    }
-
-    buscarFormario(event) {
-        Form(this.state.codigo).then(data => this.setState({formulario: data}));
-        let formulario = this.state.formulario;
-        this.setState({myForm:<Formulario formulario={formulario} />});
-        // this.form.setState({codigo: this.state.formulario.codigo});
-        // this.form.setState({curso:this.state.formulario.curso});
-        // this.form.setState({disciplina:this.state.formulario.disciplina})
-        // this.form.setState({anual:this.state.formulario.anual});
-        // this.form.setState({semestral: this.state.formulario.semestral });
-        // this.form.setState({optativa: this.state.formulario.optativa});
-        // this.form.setState({obrigatoria: this.state.formulario.obrigatoria});
-        // this.form.setState({creditos:this.state.formulario.creditos});
+        if(event.target.value!==''){
+            Form(event.target.value).then(data => this.setState({formulario: data}));
+        }
     }
 
     change(event) {
@@ -101,8 +87,7 @@ class Comparador extends Component {
                         <form>
                             <div className="form-group" style={{ width: '300px' }}>
                                 <label htmlFor="sel1">Codigo:</label>
-                                <input value={this.state.codigo} onChange={this.buscarCodigo}  
-                                 onBlur={this.buscarFormario} className="form-control" id="sel1" />
+                                <input value={this.state.codigo} onChange={this.buscarCodigo}  />
                             </div>
                         </form>
                     </div>
@@ -121,7 +106,7 @@ class Comparador extends Component {
                 </div>
 
                 <div className="col-md-5" style={{ borderRightStyle: 'solid' }}>
-                    {this.state.thisForm}
+                    <Formulario />
                 </div>
 
                 <div className="col-md-2 text-center" style={{ borderTopStyle: 'solid' }}>
@@ -191,7 +176,7 @@ class Comparador extends Component {
                 </div>
 
                 <div className="col-md-5" style={{ borderLeftStyle: 'solid' }}>
-                    {this.state.myForm}
+                    <Formulario formulario={formulario}/>
                 </div>
             </div>
         );
