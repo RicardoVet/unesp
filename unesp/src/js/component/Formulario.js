@@ -5,8 +5,9 @@ import { saveAll } from '../rest/FormularioRest';
 class Formulario extends Component {
     constructor(props) {
         super(props);
-
+        
         this.state = {
+            id: this.props.id,
             curso: this.props.curso,
             departamento: this.props.departamento,
             codigo: this.props.codigo,
@@ -49,6 +50,7 @@ class Formulario extends Component {
         this.change_conteudo = this.change_conteudo.bind(this);
         this.save_action = this.save_action.bind(this);
         this.change_teste = this.change_teste.bind(this);
+        // this.set_formulario = this.set_formulario.bind(this);
     }
 
     change_teste(event){
@@ -156,8 +158,46 @@ class Formulario extends Component {
         saveAll(this.state).then(response => response.data);
 
     }
+
+    componentWillReceiveProps(newProps){
+        if(newProps.formulario!==undefined && newProps.formulario.codigo!==this.props.codigo){
+        this.setState({id:newProps.formulario.id})
+        this.setState({curso:newProps.formulario.curso})
+        this.setState({departamento:newProps.formulario.departamento})
+        this.setState({disciplina:newProps.formulario.disciplina})
+        this.setState({anual:newProps.formulario.anual})
+        this.setState({semestral:newProps.formulario.semestral})
+        this.setState({codigo:newProps.formulario.codigo})
+        }
+    }
+
+    // shouldComponentUpdate(newProps, newState){
+    //     if(newProps.formulario!==undefined && newProps.formulario!=='' && newProps.formulario.codigo!==newState.codigo){
+    //         return false;
+    //     }
+    //     return true;
+    // }
+
+
+    // componentDidUpdate(){
+    //     if(this.props.formulario!==undefined && this.props.formulario!=='' && this.props.formulario.codigo!==this.state.codigo){
+    //         this.set_formulario();
+    //    }
+    // }
+    
+    // set_formulario(event){
+    //     this.setState({curso:this.props.formulario.curso})
+    //     this.setState({departamento:this.props.formulario.departamento})
+    //     this.setState({disciplina:this.props.formulario.disciplina})
+    //     this.setState({anual:this.props.formulario.anual})
+    //     this.setState({semestral:this.props.formulario.semestral})
+    //     this.setState({codigo:this.props.formulario.codigo})
+    //     this.setState({obrigatoria:this.props.formulario.obrigatoria})
+    //     this.setState({optativa:this.props.formulario.optativa})
+    //     this.setState({seriacao:this.props.formulario.seriacao})
+    // }
+
     render() {
-        console.log(this.props.formulario)
         return (
             <form>
                 <div className="form-group">
@@ -308,6 +348,7 @@ class Formulario extends Component {
 }
 
 Formulario.propTypes = {
+    id: PropTypes.number,
     curso: PropTypes.string,
     departamento: PropTypes.string,
     codigo: PropTypes.string,
@@ -331,6 +372,7 @@ Formulario.propTypes = {
 };
 
 Formulario.defaultProps = {
+    id: 0,
     curso: '',
     departamento: '',
     codigo: '',
