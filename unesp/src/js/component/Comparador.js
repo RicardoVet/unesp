@@ -11,7 +11,7 @@ class Comparador extends Component {
 
         this.state = {
             disciplinas: [],
-            formulario: {},
+            formulario:{},
             codigo: ''
         }
 

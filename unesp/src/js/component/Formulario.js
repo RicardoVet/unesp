@@ -26,6 +26,7 @@ class Formulario extends Component {
             aulasTeoricoPraticas: this.props.aulas_teorico_praticas,
             outras: this.props.outras,
             objetivos: this.props.objetivos,
+            comentarios: this.props.comentarios,
             conteudo: this.props.conteudo
         };
 
@@ -48,17 +49,14 @@ class Formulario extends Component {
         this.change_outras = this.change_outras.bind(this);
         this.change_objetivos = this.change_objetivos.bind(this);
         this.change_conteudo = this.change_conteudo.bind(this);
+        this.change_comentarios = this.change_comentarios.bind(this);
         this.save_action = this.save_action.bind(this);
-        this.change_teste = this.change_teste.bind(this);
+        this.clean = this.clean.bind(this);
         // this.set_formulario = this.set_formulario.bind(this);
     }
 
-    change_teste(event){
-        alert("aqui")
-    }
-
     change_curso(event) {
-        this.setState({ curso: event.target.value });
+        this.setState({  curso: event.target.value });
     }
 
     change_departamento(event) {
@@ -130,7 +128,6 @@ class Formulario extends Component {
     }
 
     change_aulas_teoricas(event) {
-        alert(event.target.value);
         this.setState({aulasTeoricas: event.target.value});
     }
 
@@ -154,13 +151,40 @@ class Formulario extends Component {
         this.setState({conteudo: event.target.value});
     }
 
+    change_comentarios(event) {
+        this.setState({comentarios: event.target.value});
+    }
+
+    clean(){
+        this.setState({curso:this.props.curso});
+        this.setState({departamento:this.props.departamento});
+        this.setState({codigo : this.props.codigo});
+        this.setState({ disciplina: this.props.disciplina});
+        this.setState({seriacao : this.props.seriacao});
+        this.setState({anual: this.props.anual});
+        this.setState({semestral: this.props.semestral});
+        this.setState({obrigatoria: false});
+        this.setState({optativa: false});
+        this.setState({requisitos: this.props.requisitos});
+        this.setState({creditos: this.props.creditos});
+        this.setState({carga: this.props.carga});
+        this.setState({numeroDeAlunos: this.props.numero_de_alunos});
+        this.setState({aulasTeoricas: this.props.aulas_teoricas});
+        this.setState({aulasPraticas: this.props.aulas_praticas});
+        this.setState({aulasTeoricoPraticas: this.props.aulas_teorico_praticas});
+        this.setState({outras: this.props.outras});
+        this.setState({objetivos: this.props.objetivos});
+        this.setState({comentarios: this.props.comentarios});
+        this.setState({conteudo: this.props.conteudo});
+    }
+
     save_action(event) {
         saveAll(this.state).then(response => response.data);
 
     }
 
     componentWillReceiveProps(newProps){
-        if(newProps.formulario!==undefined && newProps.formulario.codigo!==this.props.codigo){
+        if(newProps.formulario!==undefined){
         this.setState({id:newProps.formulario.id})
         this.setState({curso:newProps.formulario.curso})
         this.setState({departamento:newProps.formulario.departamento})
@@ -314,7 +338,9 @@ class Formulario extends Component {
                                         <h4 className="modal-title" style={{textAlign:'center'}}>Comentário</h4>
                                     </div>
                                     <div className="modal-body">
-                                        <textarea style={{width:'100%', height:'200px', resize:'none'}}></textarea>
+                                        <textarea style={{width:'100%', height:'200px', resize:'none'}} 
+                                        value={this.state.comentarios}
+                                        onChange={this.change_comentarios}></textarea>
                                     </div>
                                     <div className="modal-footer">
                                         <button type="button" className="btn btn-danger" data-dismiss="modal">Fechar</button>
@@ -327,7 +353,7 @@ class Formulario extends Component {
                 </div>
                 <div className="form-group">
                     <label htmlFor="obj">Conteúdo Programático:</label>
-                    <textarea className="form-control" rows="10" id="obj"></textarea>
+                    <textarea className="form-control" rows="10" id="obj" onChange={this.change_conteudo}></textarea>
                 </div>
                 <div style={{ margin: 'auto', paddingLeft: '50px', paddingRight: '50px' }} className="row">
                     <div className="col-md-3">
@@ -337,7 +363,7 @@ class Formulario extends Component {
                         </button>
                     </div>
                     <div className="col-md-9" style={{ textAlign: "right" }}>
-                        <button type="button" className="btn btn-default center" aria-label="Left Align">
+                        <button type="button" className="btn btn-default center" aria-label="Left Align" onClick={this.clean}>
                             <span className="glyphicon glyphicon-refresh" aria-hidden="true"></span>Limpar
                         </button>
                     </div>
@@ -367,6 +393,7 @@ Formulario.propTypes = {
     aulas_teorico_praticas: PropTypes.number,
     outras: PropTypes.string,
     objetivos: PropTypes.string,
+    comentarios: PropTypes.string,
     conteudo: PropTypes.string
 
 };
@@ -391,6 +418,7 @@ Formulario.defaultProps = {
     aulas_teorico_praticas: 0,
     outras: '',
     objetivos: '',
+    comentarios:'',
     conteudo: ''
 };
 
