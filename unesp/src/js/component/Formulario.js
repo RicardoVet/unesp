@@ -192,6 +192,7 @@ class Formulario extends Component {
         this.setState({anual:newProps.formulario.anual})
         this.setState({semestral:newProps.formulario.semestral})
         this.setState({codigo:newProps.formulario.codigo})
+        this.setState({comentarios:newProps.formulario.comentarios})
         }
     }
 
