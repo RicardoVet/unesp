@@ -186,13 +186,26 @@ class Formulario extends Component {
     componentWillReceiveProps(newProps){
         if(newProps.formulario!==undefined){
         this.setState({id:newProps.formulario.id})
-        this.setState({curso:newProps.formulario.curso})
         this.setState({departamento:newProps.formulario.departamento})
+        this.setState({curso:newProps.formulario.curso})
         this.setState({disciplina:newProps.formulario.disciplina})
         this.setState({anual:newProps.formulario.anual})
         this.setState({semestral:newProps.formulario.semestral})
+        this.setState({seriacao:newProps.formulario.seriacao})
+        this.setState({obrigatoria:newProps.formulario.obrigatoria})
+        this.setState({optativa:newProps.formulario.optativa})
         this.setState({codigo:newProps.formulario.codigo})
+        this.setState({carga:newProps.formulario.carga})
+        this.setState({numeroDeAlunos:newProps.formulario.numeroDeAlunos})
+        this.setState({aulasPraticas:newProps.formulario.aulasPraticas})
+        this.setState({aulasTeoricoPraticas:newProps.formulario.aulasTeoricoPraticas})
+        this.setState({aulasTeoricas:newProps.formulario.aulasTeoricas})
+        this.setState({outras:newProps.formulario.outras})
+        this.setState({requisitos:newProps.formulario.requisitos})
+        this.setState({creditos:newProps.formulario.creditos})
         this.setState({comentarios:newProps.formulario.comentarios})
+        this.setState({objetivos:newProps.formulario.objetivos})
+        this.setState({conteudo:newProps.formulario.conteudo})
         }
     }
 
@@ -279,14 +292,14 @@ class Formulario extends Component {
                 </div>
                 <div className="form-group">
                     <label htmlFor="car">Carga Horária Total:</label>
-                    <input type="number" className="form-control" id="car" min={this.props.carga} max={this.props.carga + 50} defaultValue={this.state.carga} onChange={this.change_carga} />
+                    <input type="number" className="form-control" id="car" min={this.props.carga} max={this.props.carga + 50} value={this.state.carga} onChange={this.change_carga} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="num">Número Máximo de Alunos:</label>
                     <input type="number" 
                         min={this.props.numero_de_alunos} 
                         max={this.props.numero_de_alunos + 50} 
-                        defaultValue={this.state.numeroDeAlunos} 
+                        value={this.state.numeroDeAlunos} 
                         onChange={this.change_numero_de_alunos} className="form-control" id="num" />
                 </div>
                 <div className="form-group">
@@ -294,7 +307,7 @@ class Formulario extends Component {
                     <input type="number" className="form-control" id="teo" 
                         min={this.props.aulas_teoricas} 
                         max={this.props.aulas_teoricas + 50} 
-                        defaultValue={this.state.aulasTeoricas} 
+                        value={this.state.aulasTeoricas} 
                         onChange={this.change_aulas_teoricas} />
                 </div>
                 <div className="form-group">
@@ -302,7 +315,7 @@ class Formulario extends Component {
                     <input type="number" className="form-control" id="pra" 
                         min={this.props.aulas_praticas} 
                         max={this.props.aulas_praticas + 50} 
-                        defaultValue={this.state.aulasPraticas} 
+                        value={this.state.aulasPraticas} 
                         onChange={this.change_aulas_praticas} />
                 </div>
                 <div className="form-group">
@@ -310,7 +323,7 @@ class Formulario extends Component {
                     <input type="number" className="form-control" id="aul" 
                         min={this.props.aulas_teorico_praticas} 
                         max={this.props.aulas_teorico_praticas + 50} 
-                        defaultValue={this.state.aulasTeoricoPraticas} 
+                        value={this.state.aulasTeoricoPraticas} 
                         onChange={this.change_aulas_teorico_praticas}/>
                 </div>
                 <div className="form-group">
@@ -343,10 +356,10 @@ class Formulario extends Component {
                                         value={this.state.comentarios}
                                         onChange={this.change_comentarios}></textarea>
                                     </div>
-                                    <div className="modal-footer">
+                                    {/* <div className="modal-footer">
                                         <button type="button" className="btn btn-danger" data-dismiss="modal">Fechar</button>
                                         <button type="button" className="btn btn-primary" data-dismiss="modal">Salvar</button>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         </div>
@@ -354,7 +367,7 @@ class Formulario extends Component {
                 </div>
                 <div className="form-group">
                     <label htmlFor="obj">Conteúdo Programático:</label>
-                    <textarea className="form-control" rows="10" id="obj" onChange={this.change_conteudo}></textarea>
+                    <textarea className="form-control" rows="10" id="obj" value={this.state.conteudo} onChange={this.change_conteudo}></textarea>
                 </div>
                 <div style={{ margin: 'auto', paddingLeft: '50px', paddingRight: '50px' }} className="row">
                     <div className="col-md-3">

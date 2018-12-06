@@ -21,7 +21,17 @@ class Comparador extends Component {
         this.action_disciplina = this.action_disciplina.bind(this);
         this.action_seriacao = this.action_seriacao.bind(this);
         this.action_anual_semestral = this.action_anual_semestral.bind(this);
+        this.action_pre_requisito = this.action_pre_requisito.bind(this);
+        this.action_creditos = this.action_creditos.bind(this);
+        this.action_carga = this.action_carga.bind(this);
+        this.action_numero_de_alunos = this.action_numero_de_alunos.bind(this);
+        this.action_aulas_teoricas = this.action_aulas_teoricas.bind(this);
+        this.action_aulas_praticas = this.action_aulas_praticas.bind(this);
+        this.action_aulas_teorico_praticas = this.action_aulas_teorico_praticas.bind(this);
+        this.action_outras = this.action_outras.bind(this);
+        this.action_objetivos = this.action_objetivos.bind(this);
         this.change = this.change.bind(this);
+        this.action_conteudo = this.action_conteudo.bind(this);
         this.buscarCodigo = this.buscarCodigo.bind(this);
     }
 
@@ -52,6 +62,48 @@ class Comparador extends Component {
     action_anual_semestral(event) {
         this.editForm.setState({ anual: this.form.state.anual });
         this.editForm.setState({ semestral: this.form.state.semestral });
+        this.editForm.setState({ obrigatoria: this.form.state.obrigatoria });
+        this.editForm.setState({ optativa: this.form.state.optativa });
+    }
+
+    action_pre_requisito(event) {
+        this.editForm.setState({requisitos:this.form.state.requisitos});
+    }
+
+    action_creditos(event) {
+        this.editForm.setState({creditos: this.form.state.creditos});
+    }
+
+    action_carga(event) {
+        this.editForm.setState({carga: this.form.state.carga});
+    }
+
+    action_numero_de_alunos(event) {
+        this.editForm.setState({numeroDeAlunos : this.form.state.numeroDeAlunos});
+    }
+
+    action_aulas_teoricas(event) {
+        this.editForm.setState({aulasTeoricas: this.form.state.aulasTeoricas})
+    }
+
+    action_aulas_praticas(event) {
+        this.editForm.setState({aulasPraticas: this.form.state.aulasPraticas});
+    }
+
+    action_aulas_teorico_praticas(event) {
+        this.editForm.setState({aulasTeoricoPraticas: this.form.state.aulasTeoricoPraticas});
+    }
+
+    action_outras(event) {
+        this.editForm.setState({outras: this.form.state.outras});
+    }
+
+    action_objetivos(event) {
+        this.editForm.setState({objetivos: this.form.state.objetivos});
+    }
+
+    action_conteudo(event) {
+        this.editForm.setState({conteudo: this.form.state.conteudo});
     }
 
     buscarCodigo(event){
@@ -139,43 +191,43 @@ class Comparador extends Component {
                         <span className="glyphicon glyphicon-arrow-left"></span>
                     </button>
                     <br />
-                    <button onClick={this.action} className="btn btn-primary btn-md margin-top-40px">
+                    <button onClick={this.action_pre_requisito} className="btn btn-primary btn-md margin-top-40px">
                         <span className="glyphicon glyphicon-arrow-left"></span>
                     </button>
                     <br />
-                    <button onClick={this.action} className="btn btn-primary btn-md margin-top-40px">
+                    <button onClick={this.action_creditos} className="btn btn-primary btn-md margin-top-40px">
                         <span className="glyphicon glyphicon-arrow-left"></span>
                     </button>
                     <br />
-                    <button onClick={this.action} className="btn btn-primary btn-md margin-top-40px">
+                    <button onClick={this.action_carga} className="btn btn-primary btn-md margin-top-40px">
                         <span className="glyphicon glyphicon-arrow-left"></span>
                     </button>
                     <br />
-                    <button onClick={this.action} className="btn btn-primary btn-md margin-top-40px">
+                    <button onClick={this.action_numero_de_alunos} className="btn btn-primary btn-md margin-top-40px">
                         <span className="glyphicon glyphicon-arrow-left"></span>
                     </button>
                     <br />
-                    <button onClick={this.action} className="btn btn-primary btn-md margin-top-40px">
+                    <button onClick={this.action_aulas_teoricas} className="btn btn-primary btn-md margin-top-40px">
                         <span className="glyphicon glyphicon-arrow-left"></span>
                     </button>
                     <br />
-                    <button onClick={this.action} className="btn btn-primary btn-md margin-top-40px">
+                    <button onClick={this.action_aulas_praticas} className="btn btn-primary btn-md margin-top-40px">
                         <span className="glyphicon glyphicon-arrow-left"></span>
                     </button>
                     <br />
-                    <button onClick={this.action} className="btn btn-primary btn-md margin-top-40px">
+                    <button onClick={this.action_aulas_teorico_praticas} className="btn btn-primary btn-md margin-top-40px">
                         <span className="glyphicon glyphicon-arrow-left"></span>
                     </button>
                     <br />
-                    <button onClick={this.action} className="btn btn-primary btn-md margin-top-40px">
+                    <button onClick={this.action_outras} className="btn btn-primary btn-md margin-top-40px">
                         <span className="glyphicon glyphicon-arrow-left"></span>
                     </button>
                     <br />
-                    <button onClick={this.action} className="btn btn-primary btn-md margin-top-80px">
+                    <button onClick={this.action_objetivos} className="btn btn-primary btn-md margin-top-80px">
                         <span className="glyphicon glyphicon-arrow-left"></span>
                     </button>
                     <br />
-                    <button onClick={this.action} className="btn btn-primary btn-md margin-top-120px">
+                    <button onClick={this.action_conteudo} className="btn btn-primary btn-md margin-top-120px">
                         <span className="glyphicon glyphicon-arrow-left"></span>
                     </button>
                 </div>
