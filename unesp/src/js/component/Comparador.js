@@ -144,7 +144,7 @@ class Comparador extends Component {
                         <form>
                             <div className="form-group" style={{ width: '300px' }}>
                                 <label htmlFor="sel1">Codigo:</label>
-                                <input value={this.state.codigo} onChange={this.buscarCodigo}  />
+                                <input value={this.state.codigo} onKeyUp={this.buscarCodigo}  />
                             </div>
                         </form>
                     </div>
